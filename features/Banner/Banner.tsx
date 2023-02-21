@@ -1,7 +1,7 @@
 'use client'
 
-// import axios from 'components/AxioxInstance/axios'
-import axios from 'axios'
+import axios from 'components/AxioxInstance/axios'
+// import axios from 'axios'
 
 import requests, { API_KEY } from 'components/AxioxInstance/request'
 import React,{useEffect, useState} from 'react'
@@ -12,22 +12,22 @@ const Banner = () => {
   const [movie,setMovie] = useState([])
 
   useEffect(() => {
-  //  async function fetchData() {
-  //   const request = await axios.get(requests.fetchTrending)
-  //   setMovie(
-  //     request.data.results[
-  //       Math.floor(Math.random() * request.data.result.length -1)
-  //     ]
-  //   )
-  //   return request
-  //  }
-  //  fetchData()
-    axios.get('https://api.themoviedb.org/3/movie/550?api_key=850c1ff854a8e55e79ae5d97b8a9fbb9')
-    .then(response=>{
-      console.log(response)
-    }).catch(error=>{
-      console.log(error)
-    })
+   async function fetchData() {
+    const request = await axios.get(requests.fetchTrending)
+    setMovie(
+      request.data.results[
+        Math.floor(Math.random() * request.data.results.length -1)
+      ]
+    )
+    return request
+   }
+   fetchData()
+    // axios.get('https://api.themoviedb.org/3/trending/all/week?api_key=850c1ff854a8e55e79ae5d97b8a9fbb9&language=en-US')
+    // .then(response=>{
+    //   console.log(response)
+    // }).catch(error=>{
+    //   console.log(error)
+    // })
   }, [])
   console.log(movie)
   //to truncate the description text
@@ -52,6 +52,7 @@ const Banner = () => {
                 This is a test descriptionThis is a test description
                 This is a test descriptiondescription
                 This is a test descriptionThis is a test description`,150)}
+                
               </BannerDescription>
             </BannerContent>
             
