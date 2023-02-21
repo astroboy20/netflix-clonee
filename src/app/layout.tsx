@@ -1,5 +1,7 @@
-// import './globals.css'
 "use client"
+
+import './globals.css'
+
 import { ThemeProvider } from "styled-components"
 import {theme,GlobalStyles} from '../../theme'
 export default function RootLayout({

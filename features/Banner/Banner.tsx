@@ -1,7 +1,9 @@
 'use client'
 
-import axios from 'components/AxioxInstance/axios'
-import requests from 'components/AxioxInstance/request'
+// import axios from 'components/AxioxInstance/axios'
+import axios from 'axios'
+
+import requests, { API_KEY } from 'components/AxioxInstance/request'
 import React,{useEffect, useState} from 'react'
 import { BannerBody, BannerButton, BannerContent, BannerDescription, BannerFadeButton, BannerTitle } from './Banner.style'
 
@@ -10,17 +12,22 @@ const Banner = () => {
   const [movie,setMovie] = useState([])
 
   useEffect(() => {
-   async function fetchData() {
-    const request = await axios .get(requests.fetchNetflixOriginal)
-
-    setMovie(
-      request.data.results[
-        Math.floor(Math.random() * request.data.result.length -1)
-      ]
-    )
-    return request
-   }
-   fetchData()
+  //  async function fetchData() {
+  //   const request = await axios.get(requests.fetchTrending)
+  //   setMovie(
+  //     request.data.results[
+  //       Math.floor(Math.random() * request.data.result.length -1)
+  //     ]
+  //   )
+  //   return request
+  //  }
+  //  fetchData()
+    axios.get('https://api.themoviedb.org/3/movie/550?api_key=850c1ff854a8e55e79ae5d97b8a9fbb9')
+    .then(response=>{
+      console.log(response)
+    }).catch(error=>{
+      console.log(error)
+    })
   }, [])
   console.log(movie)
   //to truncate the description text
