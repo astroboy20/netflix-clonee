@@ -1,0 +1,8 @@
+.banner_body{
+    background: url('/images/bgnetflix.png');
+    background-size: cover;
+    height: 500px;
+    color: white;
+    object-fit:contain;
+    position: relative;
+}

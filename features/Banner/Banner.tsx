@@ -1,15 +1,14 @@
 'use client'
 
 import axios from 'components/AxioxInstance/axios'
-// import axios from 'axios'
-
+import './Banner.css'
 import requests, { API_KEY } from 'components/AxioxInstance/request'
 import React,{useEffect, useState} from 'react'
 import { BannerBody, BannerButton, BannerContent, BannerDescription, BannerFadeButton, BannerTitle } from './Banner.style'
 
 
 const Banner = () => {
-  const [movie,setMovie] = useState([])
+  const [movie,setMovie]= useState<any>([])
 
   useEffect(() => {
    async function fetchData() {
@@ -36,27 +35,27 @@ const Banner = () => {
   }
   return (
     <div>
-        <BannerBody>
+        <div 
+        className='banner_body'
+        style={{
+          backgroundSize:'cover',
+          backgroundPosition:'center center',
+          backgroundImage:`url("https:image.tmdb.org/t/p/original/${movie?.backdrop_path}")`        
+          }}>
 
             <BannerContent>
-              <BannerTitle>Movie Name</BannerTitle>
+              <BannerTitle>{movie?.title || movie?.name || movie?.original_name}</BannerTitle>
               <BannerButton>
                   <button className="banner-button">Play</button>
                   <button className="banner-button">My list</button>
               </BannerButton>
               <BannerDescription>
-                {truncate(`This is a test descriptionThis is a test 
-                descriptionThis is a test descriptionThis is a test 
-                This is a test descriptionThis is a test description
-                his is a test descriptionThis is a test description
-                This is a test descriptionThis is a test description
-                This is a test descriptiondescription
-                This is a test descriptionThis is a test description`,150)}
+                {truncate(movie?.overview,150)}
                 
               </BannerDescription>
             </BannerContent>
             
-        </BannerBody>
+        </div>
         <BannerFadeButton/>
     </div>
   )
