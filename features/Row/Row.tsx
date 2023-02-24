@@ -35,15 +35,17 @@ const base_url = "https://image.tmdb.org/t/p/original/"
                 <RowPoster>
                     {/* {movies.map((movies)=>{})} */}
                     {movies.map((movie)=>(
-                        
-                        <Image
-                        className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
-                            key={movie.id}
-                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
-                            alt='show werey'
-                            width={100}
-                            height={100}
-                        />
+                        ((isLargeRow && movie.poster_path) || 
+                        (!isLargeRow && movie.backdrop_path)) && (
+                            <Image
+                            className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
+                                key={movie.id}
+                                src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                                alt='show werey'
+                                width={100}
+                                height={100}
+                            />
+                    )
                     ))}
                     {/* <Image
                         src='/images/bgnetflix.png'
