@@ -1,17 +1,57 @@
-import React from 'react'
-import { RowBody, RowH1 } from './Row.style'
+'use client'
+import axios from 'components/AxioxInstance/axios'
+import requests from 'components/AxioxInstance/request'
+import React,{useState,useEffect} from 'react'
+import { RowBody, RowH1, RowPoster } from './Row.style'
+import Image from 'next/image'
 
 type RowProps =  {
     title:string
     fetchUrl:string
+    isLargeRow?:boolean
 }
-const Row =({title,fetchUrl}:RowProps)=>{
+
+interface Movie{
+    id:number;
+    poster_path:string;
+    backdrop_path:string;
+    name:string
+}
+const Row =({title,fetchUrl,isLargeRow}:RowProps)=>{
+    const [movies,setMovies] = useState<Movie[]>([])
+    useEffect(() => {
+        async function fetchData(){
+            const request = await axios.get(fetchUrl)
+            setMovies(request.data.results)
+            return request
+        }
+    fetchData()  
+    }, [fetchUrl])
+const base_url = "https://image.tmdb.org/t/p/original/"
     return (
         <div>
             <RowBody>
-                <RowH1>
-                    {title}
-                </RowH1>
+                <RowH1>{title}</RowH1>
+                <RowPoster>
+                    {/* {movies.map((movies)=>{})} */}
+                    {movies.map((movie)=>(
+                        
+                        <Image
+                        className={`row-poster ${isLargeRow && 'row-posterLarge'}`}
+                            key={movie.id}
+                            src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                            alt='show werey'
+                            width={100}
+                            height={100}
+                        />
+                    ))}
+                    {/* <Image
+                        src='/images/bgnetflix.png'
+                        width={100}
+                        height={100}
+                        alt='i dey work'
+                    /> */}
+                </RowPoster>
             </RowBody>
         </div>
     )
