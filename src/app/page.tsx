@@ -10,6 +10,7 @@ import { auth } from 'features/firebase'
 import { useDispatch,useSelector } from 'react-redux'
 import { login, logout, selectUser } from 'components/Redux/userSlice'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 interface UserState  {
   username:string
@@ -19,7 +20,7 @@ export default function Home() {
   //this will return the user if it is logged in
   // it wull display the home screen
   const user =   useSelector(selectUser)
-
+  const router = useRouter()
   //to dispatch we use the dispatch hook
 
   const dispatch = useDispatch()
@@ -47,14 +48,13 @@ export default function Home() {
   return (
     <div>
       {!user ? (
-        <Link href='/Login'>
-          <LoginScreen/>
-        </Link>
+        router.push('/Login')
+        
         
       ):(
-        <Link href='/'>
+        
           <HomePage/>
-        </Link>
+      
         
       )}
       

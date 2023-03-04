@@ -4,6 +4,8 @@ import './globals.css'
 
 import { ThemeProvider } from "styled-components"
 import {theme,GlobalStyles} from '../../theme'
+import {Provider} from 'react-redux'
+import userSlice from 'components/Redux/userSlice'
 export default function RootLayout({
   children,
 }: {
@@ -19,7 +21,10 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={theme}>
           <GlobalStyles/>
-          {children}
+            <Provider store={userSlice}>
+              {children}
+            </Provider>
+          
         </ThemeProvider>
         
       </body>
