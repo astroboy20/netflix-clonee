@@ -7,6 +7,8 @@ import React,{useEffect, useState} from 'react'
 import { BannerBody, BannerButton, BannerContent, BannerDescription, BannerFadeButton, BannerTitle } from './Banner.style'
 
 
+
+
 const Banner = () => {
   const [movie,setMovie]= useState<any>([])
 
