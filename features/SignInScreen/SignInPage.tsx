@@ -1,20 +1,42 @@
 'use client'
 import React, { FormEvent, useRef } from 'react'
 import { SignupScreen } from './SignIn.style'
+import {auth} from '../firebase'
 
+
+type EmailInputRef = React.RefObject<HTMLInputElement>
+type PasswordInputRef = React.RefObject<HTMLInputElement>
 const SignInPage = () => {
 
   //using useRef to get the input (email and password) from the form
   //set to null at first and typecast it as an HTMLInputElement
-  const emailRef = useRef<HTMLInputElement>(null)
-  const passwordRef = useRef<HTMLInputElement>(null)
+
+  const emailRef:any = useRef<HTMLInputElement>(null)
+  const passwordRef:any = useRef<HTMLInputElement>(null)
 
   const register = (e:FormEvent)=>{
     e.preventDefault()
+
+    //create a new user with firebase by using the values obtained from the email and password
+    //
+    auth.createUserWithEmailAndPassword(
+      emailRef.current?.value,
+      passwordRef.current?.value
+    ).then((authUser)=>{
+      console.log(authUser)
+    }).catch(error=>{
+      console.log(error)
+    })
   }
 
   const signIn =(e:FormEvent)=>{
     e.preventDefault()
+    auth.signInWithEmailAndPassword(
+      emailRef.current?.value,
+      passwordRef.current?.value
+    ).then(authUser=>{
+      console.log(authUser)
+    }).catch(error=>console.log(error))
   }
   return (
     <>

@@ -25,5 +25,9 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/AxioxInstance/request.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types":[
+    "firebase",
+    "firebase/firestore"
+  ]
 }
