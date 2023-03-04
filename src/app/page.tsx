@@ -1,15 +1,10 @@
 'use client'
 import { HomePage } from 'features/Home'
-// import { Inter } from '@next/font/google'
-// import Head from 'next/head'
-import { createSlice } from '@reduxjs/toolkit'
 import { LoginScreen } from 'features/LoginScreen'
-// const inter = Inter({ subsets: ['latin'] })
 import { useEffect } from 'react'
 import { auth } from 'features/firebase'
 import { useDispatch,useSelector } from 'react-redux'
 import { login, logout, selectUser } from 'components/Redux/userSlice'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 interface UserState  {
@@ -44,20 +39,22 @@ export default function Home() {
   
     
   }, [])
-  
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/Login');
+    }
+  }, [user, router]); // run this effect whenever the user or router changes
   return (
-    <div>
-      {!user ? (
-        router.push('/Login')
-        
+    <>
+      {user ? (
+      <HomePage/>       
         
       ):(
         
-          <HomePage/>
-      
-        
+        <LoginScreen/>
       )}
       
-    </div>
+    </>
   )
 }

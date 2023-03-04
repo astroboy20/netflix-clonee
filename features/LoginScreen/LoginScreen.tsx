@@ -1,7 +1,7 @@
 import React,{useState,useRef} from 'react'
 import { Button, LoginBG, LoginBody, LoginContent } from './LoginScreen.style'
 import Image from 'next/image'
-import {SignInPage} from 'features/SignInScreen/SignInPage'
+import {SignInPage} from 'features/LoginScreen/SignInPage'
 
 // type UserState = {
 //   stat
