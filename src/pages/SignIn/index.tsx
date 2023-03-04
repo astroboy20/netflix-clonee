@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { SignInPage} from 'features/SignInScreen/SignInPage'
 
-const loginScreen = () => {
+const SignIn = () => {
   return (
     
     <>
@@ -21,4 +21,4 @@ const loginScreen = () => {
   )
 }
 
-export default loginScreen
+export default SignIn

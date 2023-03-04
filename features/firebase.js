@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 export const firebaseConfig = {
     apiKey: "AIzaSyDz2r-bQBn4AQiGpAlAUrc_KR_aUOYmRCE",
     authDomain: "netflix-clone-35d08.firebaseapp.com",
